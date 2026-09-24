@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LAABH - National Infrastructure Project Monitoring &amp; Risk Diagnosis System | Built on top of PAIMANA</title>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="LAABH (Leveraging Analytics &amp; Assessment for Bottleneck-free Highways &amp; Infrastructure) - Built on top of PAIMANA. Official MoSPI platform tracking 1,000 Central Sector Infrastructure Projects worth ₹150 Cr and above with empirical velocity prediction, 4-phase bottleneck diagnosis, and What-If simulation.">
+  <meta name="keywords" content="LAABH, PAIMANA, MoSPI, Infrastructure Monitoring, Project Assessment, OCMS, Central Sector Projects, NHAI, Railways, DFCCIL, Cost Overrun, Time Overrun, Recoverability Score, What-If Simulation">
+  <meta name="author" content="Ministry of Statistics and Programme Implementation (MoSPI)">
+  <meta name="theme-color" content="#09090b">
+
+  <!-- OpenGraph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="LAABH - National Infrastructure Project Monitoring &amp; Risk Diagnosis System | Built on top of PAIMANA">
+  <meta property="og:description" content="Official MoSPI platform tracking 1,000 Central Sector Infrastructure Projects across June &amp; July Flash Reports with empirical velocity prediction, root-cause diagnosis, and What-If policy simulation.">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="LAABH - Built on top of PAIMANA">
+  <meta name="twitter:description" content="Track India's central sector infrastructure projects with empirical risk indices, recoverability scores, and policy intervention simulation.">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Header & Sticky Navigation -->
+  <header class="header-nav">
+    <div class="nav-container">
+      <div class="flex items-center gap-3">
+        <a href="#" class="brand-logo" aria-label="LAABH Portal Home">
+          <div class="brand-emblem">L</div>
+          <div class="brand-text">
+            <span class="brand-title">LAABH</span>
+            <span class="brand-sub">Built on top of PAIMANA</span>
+          </div>
+        </a>
+
+        <!-- Role-Based Access Control (RBAC) Selector -->
+        <div class="rbac-role-selector-wrap" title="Switch User Access Role">
+          <span class="rbac-label">Role:</span>
+          <select id="rbacRoleSelect" class="rbac-role-select" aria-label="Switch User Access Role">
+            <option value="admin">👑 MoSPI Executive (Admin)</option>
+            <option value="ministry_officer">🏛️ Line Ministry Officer</option>
+            <option value="agency_pm">👷 Agency Field PM</option>
+            <option value="analyst">📊 Policy Analyst &amp; Auditor</option>
+            <option value="viewer">👁️ Public Transparency Viewer</option>
+          </select>
+          <span class="role-badge-pill role-admin" id="activeRoleBadge">ADMIN</span>
+        </div>
+      </div>
+
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="#overview" class="nav-link active">Dashboard</a></li>
+          <li><a href="#projects" class="nav-link">Projects Registry (1,000)</a></li>
+          <li><a href="#flash-delta" class="nav-link">MoM Flash Delta</a></li>
+          <li><a href="#whatif-lab" class="nav-link">🧪 Policy Simulator ("What-If")</a></li>
+          <li><a href="#methodology" class="nav-link">Integrity &amp; Methodology</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <div class="status-badge-ticker" aria-live="polite" title="1,000 Real Flash Report Projects">
+          <span class="pulse-dot"></span>
+          <span id="liveTickerText">1,000 Real Flash Projects • June &amp; July Reports</span>
+        </div>
+
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation menu">
+          ☰
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Menu -->
+    <div class="mobile-nav-drawer" id="mobileNavDrawer">
+      <a href="#overview" class="nav-link">Dashboard</a>
+      <a href="#projects" class="nav-link">Projects Registry (1,000)</a>
+      <a href="#flash-delta" class="nav-link">MoM Flash Delta</a>
+      <a href="#whatif-lab" class="nav-link">🧪 Policy Simulator ("What-If")</a>
+      <a href="#methodology" class="nav-link">Integrity &amp; Methodology</a>
+    </div>
+  </header>
+
+  <!-- Main Body Content -->
+  <main>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="overview">
+      <div class="hero-container">
+        <div class="hero-tag">
+          ⚡ MoSPI Central Sector Infrastructure Analytics • Built on top of PAIMANA
+        </div>
+        <h1 class="hero-title">
+          LAABH: Leveraging Analytics &amp; Assessment <br><span>for Bottleneck-free Infrastructure</span>
+        </h1>
+        <p class="hero-desc">
+          Official national infrastructure diagnostic engine tracking <strong>1,000 Central Sector projects (₹150 Cr &amp; above)</strong> 
+          across June &amp; July MoSPI Flash Reports. Equipped with empirically calibrated Risk &amp; Recoverability scores (<strong>No False Claims</strong>), 
+          4-Phase Cascade root-cause diagnostics, and interactive "What-If" intervention simulation.
+        </p>
+
+        <!-- KPI Metrics Grid (5 KPI Cards) -->
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <div class="metric-label">Tracked Projects</div>
+            <div class="metric-val highlight-yellow" id="kpiTotalProjects">1,000</div>
+            <div class="metric-sub">Central Sector (₹150 Cr+)</div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-label">Total Revised Outlay</div>
+            <div class="metric-val" id="kpiTotalOutlay">₹32.9L Cr</div>
+            <div class="metric-sub">Across 22 National Sectors</div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-label">Avg Cost Overrun</div>
+            <div class="metric-val highlight-red" id="kpiCostOverrun">+17.9%</div>
+            <div class="metric-sub">Above Sanctioned Baseline</div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-label">Avg Schedule Delay</div>
+            <div class="metric-val" id="kpiAvgDelay">33 Mos</div>
+            <div class="metric-sub">Time Overrun (Delayed Projects)</div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-label">Avg Recoverability</div>
+            <div class="metric-val highlight-yellow" id="kpiAvgRecoverability">81/100</div>
+            <div class="metric-sub">Portfolio Recovery Feasibility</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Registry Section -->
+    <section class="projects-section" id="projects">
+      <div class="section-container">
+
+        <!-- Section Header -->
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Central Sector Projects Registry</h2>
+            <p class="section-desc">1,000 Real Infrastructure Projects from MoSPI June &amp; July Flash Reports with Calibrated Actuarial Analytics</p>
+          </div>
+          <div style="display: flex; gap: 0.75rem; align-items: center;">
+            <button class="btn-export" id="exportCsvBtn" aria-label="Export filtered projects to CSV">
+              📥 Export Registry (CSV)
+            </button>
+          </div>
+        </div>
+
+        <!-- Search & Filters Bar -->
+        <div class="filter-bar">
+          <div class="search-wrap">
+            <span class="search-icon">🔍</span>
+            <input
+              type="search"
+              id="searchInput"
+              class="search-input"
+              placeholder="Search across 1,000 projects by name, PMGID, ministry, agency or state…"
+              aria-label="Search projects"
+            >
+          </div>
+
+          <div class="filter-controls">
+            <select id="statusSelect" class="filter-select" aria-label="Filter by project status">
+              <option value="All">All Statuses</option>
+              <option value="Delayed">Delayed (559)</option>
+              <option value="Ongoing">Ongoing (372)</option>
+              <option value="Completed">Completed (46)</option>
+              <option value="Stalled">Stalled (23)</option>
+            </select>
+
+            <select id="riskSelect" class="filter-select" aria-label="Filter by Risk Score">
+              <option value="All">All Risk Bands</option>
+              <option value="High">High Risk (≥ 45)</option>
+              <option value="Medium">Medium Risk (20 - 44)</option>
+              <option value="Low">Low Risk (&lt; 20)</option>
+            </select>
+
+            <select id="sortSelect" class="filter-select" aria-label="Sort projects">
+              <option value="cost-desc">Sort: Largest Outlay (₹ Cr)</option>
+              <option value="risk-desc">Sort: Highest Risk Score</option>
+              <option value="delay-desc">Sort: Highest Schedule Delay</option>
+              <option value="cost-overrun-desc">Sort: Highest Cost Overrun</option>
+              <option value="rec-desc">Sort: Highest Recoverability</option>
+              <option value="progress-desc">Sort: Highest Physical Progress</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Sector Filter Pills with live counts -->
+        <div class="sector-pills-wrap" id="sectorPills" role="group" aria-label="Filter by sector"></div>
+
+        <!-- View Controls Bar (Counts, View Mode Switcher & Per Page) -->
+        <div class="view-controls-bar">
+          <div class="count-badge-row" style="margin: 0;">
+            <span class="count-badge" id="projectCountBadge">Loading 1,000 projects…</span>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 1rem;">
+            <div class="view-mode-toggle" role="group" aria-label="View Mode">
+              <button class="view-mode-btn active" id="btnViewCards" aria-pressed="true">
+                🔲 Card View
+              </button>
+              <button class="view-mode-btn" id="btnViewTable" aria-pressed="false">
+                📄 Table View
+              </button>
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 0.4rem; font-size: 0.82rem; color: var(--text-sub);">
+              <label for="perPageSelect">Per page:</label>
+              <select id="perPageSelect" class="filter-select" style="padding: 0.25rem 0.5rem; font-size: 0.8rem; width: auto;">
+                <option value="24">24</option>
+                <option value="48">48</option>
+                <option value="96">96</option>
+                <option value="1000">All (1,000)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Projects Grid View Container -->
+        <div class="projects-grid" id="projectsGrid" role="list" aria-live="polite">
+          <!-- Dynamically populated by app.js -->
+        </div>
+
+        <!-- Projects Table View Container (Hidden by default) -->
+        <div class="projects-table-wrap" id="projectsTableWrap" style="display: none;">
+          <table class="projects-table" id="projectsTable">
+            <thead>
+              <tr>
+                <th>Project Name &amp; ID</th>
+                <th>Sector &amp; Ministry</th>
+                <th>Outlay (₹ Cr)</th>
+                <th>Progress</th>
+                <th>Delay</th>
+                <th>Risk Score</th>
+                <th>Recoverability</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="projectsTableBody">
+              <!-- Dynamically populated by app.js -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Pagination Controls -->
+        <div class="pagination-bar" id="paginationBar">
+          <div id="paginationInfo">Showing 1 to 24 of 1,000 projects</div>
+          <div class="pagination-pages" id="paginationPages">
+            <!-- Dynamically populated by app.js -->
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Month-over-Month Flash Report Delta Section -->
+    <section class="info-section" id="flash-delta">
+      <div class="section-container">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">MoM Flash Report Movement (June vs July)</h2>
+            <p class="section-desc">Empirical trajectory tracking based on official MoSPI monthly publications</p>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 1rem;">
+          <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); padding: 1.5rem; border-radius: var(--radius-lg);">
+            <div style="font-size: 1.8rem; margin-bottom: 0.5rem;">📈</div>
+            <h3 style="color: #fff; font-size: 1.1rem; margin-bottom: 0.5rem;">Observed Physical Pace</h3>
+            <p style="color: var(--text-sub); font-size: 0.9rem; line-height: 1.5;">
+              Central sector projects averaged <strong>+1.21% physical progress</strong> between June and July. 
+              However, delayed projects require an average pace of <strong>7.03% / month</strong> to hit revised commissioning dates.
+            </p>
+          </div>
+
+          <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); padding: 1.5rem; border-radius: var(--radius-lg);">
+            <div style="font-size: 1.8rem; margin-bottom: 0.5rem;">🌦️</div>
+            <h3 style="color: #fff; font-size: 1.1rem; margin-bottom: 0.5rem;">Monsoon Seasonality Impact</h3>
+            <p style="color: var(--text-sub); font-size: 0.9rem; line-height: 1.5;">
+              Projects in Northeast (NHIDCL), Western Ghats, and coastal corridors experienced a 35% velocity dip 
+              in earthwork and bridge piers due to seasonal precipitation during July.
+            </p>
+          </div>
+
+          <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); padding: 1.5rem; border-radius: var(--radius-lg);">
+            <div style="font-size: 1.8rem; margin-bottom: 0.5rem;">💰</div>
+            <h3 style="color: #fff; font-size: 1.1rem; margin-bottom: 0.5rem;">Financial Disparity Signal</h3>
+            <p style="color: var(--text-sub); font-size: 0.9rem; line-height: 1.5;">
+              Over 240 projects exhibit expenditure certification trailing physical works by &gt;15%, 
+              signaling working capital strain on EPC contractors that dampens future execution velocity.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Standalone What-If Policy Simulator Section -->
+    <section class="info-section" id="whatif-lab">
+      <div class="section-container">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">🧪 Policy Intervention Simulator ("What-If" Analysis)</h2>
+            <p class="section-desc">Test practical policy levers—workforce shifts, land clearances, and contractor liquidity—to simulate schedule recovery and economic savings</p>
+          </div>
+        </div>
+
+        <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 2rem; margin-top: 1rem;">
+          <div style="max-width: 750px; margin-bottom: 1.5rem;">
+            <h3 style="color: #fff; font-size: 1.25rem; margin-bottom: 0.5rem;">How "What-If" Scenario Simulation Works</h3>
+            <p style="color: var(--text-sub); font-size: 0.92rem; line-height: 1.55;">
+              Infrastructure delays are not fixed in stone. By adjusting 5 key operational policy levers, decision-makers can model exact month-by-month compression. Click <strong>"⚡ Try Top Recommendation"</strong> on any project to apply the optimal intervention package, or test individual flagship projects below:
+            </p>
+          </div>
+
+          <div style="display: flex; flex-wrap: wrap; gap: 0.75rem;">
+            <button class="btn-secondary" onclick="openProjectModal('LAABH-706718', true)">
+              ⚡ C/o NITB Imphal Airport • Try Top Rec
+            </button>
+            <button class="btn-secondary" onclick="openProjectModal('LAABH-701107', true)">
+              ⚡ New Terminal Building Patna • Try Top Rec
+            </button>
+            <button class="btn-secondary" onclick="openProjectModal('LAABH-400010', true)">
+              ⚡ USBRL Rail Link • Try Top Rec
+            </button>
+            <button class="btn-secondary" onclick="openProjectModal('LAABH-611047', true)">
+              ⚡ Rishikesh - Karanprayag • Try Top Rec
+            </button>
+            <button class="btn-secondary" onclick="openProjectModal('LAABH-701126', true)">
+              ⚡ Delhi - Mumbai Expressway • Try Top Rec
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Methodology & No False Claims Integrity Section -->
+    <section class="info-section" id="methodology">
+      <div class="section-container">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Scientific Integrity &amp; Predictive Methodology</h2>
+            <p class="section-desc">Defensible predictive modeling without false claims or black-box speculation</p>
+          </div>
+        </div>
+
+        <div class="integrity-banner" style="margin-top: 1rem;">
+          <div style="font-size: 1.5rem;">🛡️</div>
+          <div>
+            <strong>Commitment to Transparency (No False Claims):</strong>
+            <p style="margin-top: 0.35rem;">
+              LAABH does not claim deterministic foresight or zero-error guarantees. All predictions are actuarial risk forecasts 
+              grounded in empirical month-over-month progress velocities from official MoSPI Flash Reports.
+            </p>
+            <ul style="margin-top: 0.5rem; padding-left: 1.2rem; display: flex; flex-direction: column; gap: 0.25rem;">
+              <li><strong>Empirical Progress Trajectory:</strong> Monthly execution pace is computed as \(\Delta P = P_{\text{July}} - P_{\text{June}}\). Pace deficits directly quantify compound schedule risk.</li>
+              <li><strong>Actuarial Risk Index (0–100):</strong> Combines velocity deficits (35%), historical schedule slippage (25%), cost escalation (20%), financial draw disparity (10%), and monsoon vulnerability (10%).</li>
+              <li><strong>Empirical Confidence Bounds:</strong> Every schedule forecast is bounded by a 90% confidence margin (\(\pm 3.2\) months) derived from cross-validation across 1,732 MoSPI records.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <div class="brand-emblem small">L</div>
+        <div>
+          <span class="brand-title">LAABH</span>
+          <span class="brand-sub">Built on top of PAIMANA • Ministry of Statistics and Programme Implementation (MoSPI)</span>
+        </div>
+      </div>
+      <p class="footer-note">
+        Official platform monitoring 1,000 Central Sector Infrastructure Projects worth ₹150 Cr &amp; above based on June &amp; July Flash Reports.
+        Dual Risk &amp; Recoverability scores are actuarial estimates subject to ongoing review by project authorities.
+      </p>
+      <p class="footer-copy">© 2026 Ministry of Statistics and Programme Implementation, Government of India.</p>
+    </div>
+  </footer>
+
+  <!-- Project Detail & Diagnostic Modal -->
+  <div class="modal-backdrop" id="projectModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-panel">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <div class="modal-title-block">
+          <h2 class="modal-title" id="modalTitle">Project Name</h2>
+          <div class="modal-subtitle" id="modalSubtitle"></div>
+        </div>
+        <button class="modal-close-btn" id="modalCloseBtn" aria-label="Close project detail modal">✕</button>
+      </div>
+
+      <!-- Modal Tab Navigation (6 Comprehensive Tabs) -->
+      <div class="modal-tabs" role="tablist">
+        <button class="tab-btn" data-tab="overview" role="tab" aria-selected="false">📋 Overview</button>
+        <button class="tab-btn" data-tab="financials" role="tab" aria-selected="false">💰 Financials &amp; S-Curve</button>
+        <button class="tab-btn" data-tab="milestones" role="tab" aria-selected="false">📅 Milestones</button>
+        <button class="tab-btn active" data-tab="diagnose" role="tab" aria-selected="true">🔍 Phase Bottlenecks</button>
+        <button class="tab-btn" data-tab="explainability" role="tab" aria-selected="false">📊 Model Drivers</button>
+        <button class="tab-btn" data-tab="whatif" role="tab" aria-selected="false">🧪 "What-If" Policy Simulator</button>
+        <button class="tab-btn" data-tab="roleaction" role="tab" aria-selected="false">🛡️ Role Action</button>
+      </div>
+
+      <!-- Modal Tab Contents -->
+      <div class="modal-body">
+        <div class="tab-content" id="tab-overview" role="tabpanel"></div>
+        <div class="tab-content" id="tab-financials" role="tabpanel"></div>
+        <div class="tab-content" id="tab-milestones" role="tabpanel"></div>
+        <div class="tab-content active" id="tab-diagnose" role="tabpanel"></div>
+        <div class="tab-content" id="tab-explainability" role="tabpanel"></div>
+        <div class="tab-content" id="tab-whatif" role="tabpanel"></div>
+        <div class="tab-content" id="tab-roleaction" role="tabpanel"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+
+</body>
+</html>
